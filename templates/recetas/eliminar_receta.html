@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7 text-center">
+
+        <h1>Eliminar receta</h1>
+
+        <p class="lead mt-4">
+            ¿Estás seguro de que deseas eliminar
+            "{{ receta.titulo }}"?
+        </p>
+
+        <p class="text-danger">
+            Esta acción no se puede deshacer.
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger">
+                Sí, eliminar
+            </button>
+
+            <a href="{% url 'recetas:detalle' receta.pk %}"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
