@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="card shadow-sm p-4">
+
+            <h2 class="text-center mb-4">
+                Iniciar sesión
+            </h2>
+
+            <p class="text-center">
+                Bienvenido nuevamente a Recetas de Mamá.
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                {% endif %}
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Nombre de usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        class="form-control"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ next }}"
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn-receta w-100"
+                >
+                    Ingresar
+                </button>
+
+            </form>
+
+            <p class="text-center mt-4">
+
+                ¿No tienes una cuenta?
+
+                <a href="{% url 'usuarios:registro' %}">
+                    Regístrate
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <div class="card shadow-sm p-4">
+
+            <h2 class="mb-4">
+                Mi perfil
+            </h2>
+
+            <p>
+                <strong>Usuario:</strong>
+                {{ user.username }}
+            </p>
+
+            <p>
+                <strong>Correo electrónico:</strong>
+                {{ user.email }}
+            </p>
+
+            <p>
+                <strong>Fecha de registro:</strong>
+                {{ user.date_joined|date:"d/m/Y" }}
+            </p>
+
+            <hr>
+
+            <h4>Mis recetas</h4>
+
+            {% for receta in user.recetas.all %}
+
+                <div class="mb-2">
+
+                    <a href="{% url 'recetas:detalle' receta.pk %}">
+                        {{ receta.titulo }}
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <p>
+                    Todavía no has publicado ninguna receta.
+                </p>
+
+            {% endfor %}
+
+            <a
+                href="{% url 'recetas:crear' %}"
+                class="btn btn-receta mt-3"
+            >
+                Publicar nueva receta
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

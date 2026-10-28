@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow-sm p-4">
+
+            <h2 class="text-center mb-4">
+                Crear una cuenta
+            </h2>
+
+            <p class="text-center">
+                Únete a Recetas de Mamá y comparte
+                tus mejores recetas.
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ formulario.as_p }}
+
+                <button
+                    type="submit"
+                    class="btn btn-receta w-100"
+                >
+                    Registrarme
+                </button>
+
+            </form>
+
+            <p class="text-center mt-4">
+
+                ¿Ya tienes una cuenta?
+
+                <a href="{% url 'usuarios:login' %}">
+                    Inicia sesión
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
